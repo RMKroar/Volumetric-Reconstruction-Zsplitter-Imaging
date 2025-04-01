@@ -1,3 +1,4 @@
+import json
 import numpy as np
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -19,7 +20,7 @@ def deconv_result():
     EV_load = EV_load - np.min(EV_load)
     result = EV_load / np.max(EV_load)
 
-    return {"result": result.tolist()}
+    return {"result": json.dumps(result.tolist())}
 
 if __name__ == "__main__":
     import uvicorn
